@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xFordPassLite.net.Views.SettingsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:xFordPassLite.net.ViewModels"  
+             x:DataType="local:SettingsViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" IconImageSource="Assets/twotone_save_black_24.png"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView>
+                <TableRoot Title="FordPass Login">
+                    <TableSection>
+                        <EntryCell x:Name="BoxUser" Label="User ID" Text="{Binding LoginBox}" Placeholder="FordPass UserID" LabelColor="#000000" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                <Label Text="Password" HorizontalOptions="Start" MinimumWidthRequest="20" />
+                                <Entry x:Name="BoxPwd" Text="{Binding PassBox}" Placeholder="FordPass User Password" IsPassword="True" TextColor="#000000" MaxLength="20" />
+                            </StackLayout>
+                        </ViewCell>
+                        <EntryCell x:Name="BoxVin" Label="VIN" Text="{Binding VinBox}" Placeholder="FordPass VIN" LabelColor="#000000" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                <Picker Title="Region Country Code" x:Name="RegionPicker" SelectedIndexChanged="RegionPicker_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>US</x:String>
+                                            <x:String>EU</x:String>
+                                            <x:String>AU</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </StackLayout>
+                        </ViewCell>
+
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+                <TableView Intent="Settings" x:Name="SettingsTable" IsVisible="{Binding SettingsSection}">
+                <TableRoot Title="Item Visibility">
+                    <TableSection Title="Alarm">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Alarm.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Alarm Event">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.AlarmEvent.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Battery Health">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Battery.Health.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Battery Voltage">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Battery.Status.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                     <TableSection Title="Diesel System Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.DieselSystemStatus.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Door Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.DoorStatus.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Fuel Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Fuel.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Ignition Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.IgnitionStatus.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Last Modified Date">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.LastModifiedDate_Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Last Refresh">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.LastRefresh_Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Lock Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.LockStatus.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Odometer">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Odometer.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Oil Status">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.Oil.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Server Time">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.ServerTime_Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Window Position">
+                        <SwitchCell Text="Enabled" On="{Binding Vehicle.WindowPosition.Visible, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Debug Mode">
+                        <SwitchCell Text="Enabled" On="{Binding DebugMode, Mode=TwoWay}" />
+                    </TableSection>
+                    <TableSection Title="Long Refresh At Startup">
+                        <SwitchCell Text="Enabled" On="{Binding LongRefreshAtStartup, Mode=TwoWay}" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            <Label Text="{Binding LogMessage}" FontAttributes="Bold" FontSize="Title" TextColor="#940000" />
+            <Editor Text="{Binding ErrorCode, StringFormat='{0}'}" IsVisible="{Binding DebugMode}" IsReadOnly="True" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" FontSize="Micro" TextColor="#000000" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

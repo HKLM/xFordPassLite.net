@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xFordPassLite.net.Views.NewUserPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:xFordPassLite.net.ViewModels"  
+             x:DataType="local:NewUserViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" IconImageSource="Assets/twotone_save_black_24.png"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="This app requires a valid FordPass user account with a FordPass enabled vehicle, registered to the user. Enter your FordPass User ID, password, vehicle VIN # and the region you purchased the vehicle in (USA/North America, EU, or AU)" />
+            <TableView>
+                <TableRoot Title="FordPass Login">
+                    <TableSection>
+                        <EntryCell x:Name="BoxUser" Label="User ID" Text="{Binding LoginBox}" Placeholder="FordPass UserID" LabelColor="#000000" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                <Label Text="Password" HorizontalOptions="Start" MinimumWidthRequest="20" />
+                                <Entry x:Name="BoxPwd" Text="{Binding PassBox}" Placeholder="FordPass User Password" IsPassword="True" TextColor="#000000" MaxLength="20" />
+                            </StackLayout>
+                        </ViewCell>
+                        <EntryCell x:Name="BoxVin" Label="VIN" Text="{Binding VinBox}" Placeholder="FordPass VIN" LabelColor="#000000" />
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                <Picker Title="Region Country Code" x:Name="RegionPicker" SelectedIndexChanged="RegionPicker_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>US</x:String>
+                                            <x:String>EU</x:String>
+                                            <x:String>AU</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+                </TableView>
+            <Label Text="{Binding LogMessage}" FontAttributes="Bold" FontSize="Title" TextColor="#940000" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

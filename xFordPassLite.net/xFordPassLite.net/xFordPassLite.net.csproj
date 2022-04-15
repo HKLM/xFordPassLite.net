@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Copyright>Copyright Brian Alexander (c) 2022</Copyright>
+    <Authors>Brian Alexander</Authors>
+    <Version>0.1.2</Version>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl />
+    <ApplicationIcon>xfordpass.ico</ApplicationIcon>
+    <Description>Xamarin Forms mobile app to get the status and to interact, with a FordPass enabled vehicle. 
+Requires an existing active FordPass account and a FordPass Connect™-equipped vehicle, registered to the account.
+NOTICE: This app is not from Ford, nor is it endorsed, or supported by in any way, by Ford Motor Company. Use at your own risk. FordPass™ is a registered Trade Mark of Ford Motor Company</Description>
+    <RepositoryUrl>https://github.com/HKLM/xFordPassLite.net</RepositoryUrl>
+    <PackageTags>fordpass, ford, mobile, vehicle, remote unlock, remote start</PackageTags>
+    <PackageProjectUrl>https://github.com/HKLM/xFordPassLite.net</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </EmbeddedResource>
+  </ItemGroup>
+	
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\outline_car_rental_black_36.png" />
+    <EmbeddedResource Include="Assets\outline_import_export_black_24.png" />
+    <EmbeddedResource Include="Assets\outline_lock_black_36.png" />
+    <EmbeddedResource Include="Assets\outline_lock_open_black_36.png" />
+    <EmbeddedResource Include="Assets\outline_receipt_long_black_36.png" />
+    <EmbeddedResource Include="Assets\twotone_autorenew_black_24.png" />
+    <EmbeddedResource Include="Assets\twotone_https_black_36.png" />
+    <EmbeddedResource Include="Assets\twotone_save_black_24.png" />
+    <EmbeddedResource Include="Assets\twotone_settings_black_36.png" />
+    <EmbeddedResource Include="Assets\xfordpass.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\NewUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xFordPassLite.net.Views.ActionPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:xFordPassLite.net.ViewModels"  
+             xmlns:model="clr-namespace:xFordPassLite.net.Models" x:DataType="local:ActionViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}" IconImageSource="Assets/twotone_autorenew_black_24.png" />
+        <ToolbarItem Text="GetUpdate" Command="{Binding UpdateCommand}" IconImageSource="Assets/outline_import_export_black_24.png"  />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0,10" >
+                <ActivityIndicator IsRunning="{Binding BusyBee}" />
+                <Button Text="Lock" Command="{Binding LockCommand}" ImageSource="Assets/twotone_https_black_36.png" Padding="20,5" CornerRadius="4" />
+                <Button Text="Unlock" Command="{Binding UnlockCommand}" ImageSource="Assets/outline_lock_open_black_36.png" Padding="20,5" CornerRadius="4" />
+                <Button Text="Start" Command="{Binding StartCommand}" Padding="20,5" CornerRadius="4" />
+                <Button Text="Stop" Command="{Binding StopCommand}" Padding="20,5" CornerRadius="4"  />
+                <Label Text="{Binding LogMessage}" x:Name="LabelLog" FontAttributes="Bold" TextColor="#000000"  />
+                <Editor Text="{Binding ErrorCode, StringFormat='{0}'}" IsVisible="{Binding DebugMode}" IsReadOnly="True" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" FontSize="Micro" TextColor="#000000" />
+                <!--<Label Text="{Binding RawJSON, StringFormat='{0}'}" TextColor="#000000" VerticalTextAlignment="Start" HorizontalOptions="StartAndExpand" FontSize="Micro" VerticalOptions="StartAndExpand" MinimumHeightRequest="200" WidthRequest="500" />-->
+                <!--<Editor Text="{Binding RawJSON, StringFormat='{0}'}" IsReadOnly="True" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" FontSize="Micro" TextColor="#000000" />-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xFordPassLite.net.Views.VehiclePage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:xFordPassLite.net.ViewModels"  
+             xmlns:model="clr-namespace:xFordPassLite.net.Models" 
+             xmlns:xc="clr-namespace:xFordPassLite.net.Converters" x:DataType="local:VehicleViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xc:WarningColorConverter x:Key="warningColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}" IconImageSource="Assets/twotone_autorenew_black_24.png" />
+        <ToolbarItem Text="Update" Command="{Binding UpdateCommand}" IconImageSource="Assets/outline_import_export_black_24.png" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Margin="5,0" Padding="10,0">
+            <ActivityIndicator IsRunning="{Binding BusyBee}" />
+            <Label Text="{Binding ErrorCode}" TextColor="#000000" />
+            <Label Text="Security" FontSize="Medium" FontAttributes="Bold" IsVisible="{Binding SecuritySection}" />
+            <Label Text="{Binding Vehicle.Alarm.Value, StringFormat='Alarm:         {0}'}" IsVisible="{Binding Vehicle.Alarm.Visible}" TextColor="{Binding Vehicle.Alarm.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.LockStatus.Value, StringFormat='Lock:           {0}'}" IsVisible="{Binding Vehicle.LockStatus.Visible}" TextColor="{Binding Vehicle.LockStatus.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.AlarmEvent.Value, StringFormat='AlarmEvent: {0}'}" IsVisible="{Binding Vehicle.AlarmEvent.Visible}" />
+ 
+            <BoxView HeightRequest="1" Color="#414141" IsVisible="{Binding Vehicle.WindowPosition.Visible}" />
+            <Label Text="Windows" FontSize="Medium" FontAttributes="Bold" IsVisible="{Binding Vehicle.WindowPosition.Visible}" />
+            <Label Text="{Binding Vehicle.WindowPosition.DriverWindowPosition.Value, StringFormat='Driver:            {0}'}" IsVisible="{Binding Vehicle.WindowPosition.Visible}" TextColor="{Binding Vehicle.WindowPosition.DriverWindowPosition.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.WindowPosition.PassWindowPosition.Value, StringFormat='Passenger:   {0}'}" IsVisible="{Binding Vehicle.WindowPosition.Visible}" TextColor="{Binding Vehicle.WindowPosition.PassWindowPosition.Value, Converter={StaticResource warningColorConverter}}" />
+
+            <BoxView HeightRequest="1" Color="#414141" IsVisible="{Binding Vehicle.DoorStatus.Visible}" />
+            <Label Text="Doors" FontSize="Medium" FontAttributes="Bold" IsVisible="{Binding Vehicle.DoorStatus.Visible}"  />
+            <Label Text="{Binding Vehicle.DoorStatus.DriverDoor.Value,    StringFormat='Driver:           {0}'}" IsVisible="{Binding Vehicle.DoorStatus.Visible}" TextColor="{Binding Vehicle.DoorStatus.DriverDoor.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.DoorStatus.PassengerDoor.Value, StringFormat='Passenger:  {0}'}" IsVisible="{Binding Vehicle.DoorStatus.Visible}" TextColor="{Binding Vehicle.DoorStatus.PassengerDoor.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.DoorStatus.LeftRearDoor.Value,  StringFormat='RearDriver:   {0}'}" IsVisible="{Binding Vehicle.DoorStatus.Visible}" TextColor="{Binding Vehicle.DoorStatus.LeftRearDoor.Value, Converter={StaticResource warningColorConverter}}" />
+            <Label Text="{Binding Vehicle.DoorStatus.RightRearDoor.Value, StringFormat='RearPass:    {0}'}" IsVisible="{Binding Vehicle.DoorStatus.Visible}" TextColor="{Binding Vehicle.DoorStatus.RightRearDoor.Value, Converter={StaticResource warningColorConverter}}" />
+
+            <BoxView HeightRequest="1" Color="#414141" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="Diesel" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="{Binding Vehicle.DieselSystemStatus.ExhaustFluidLevel, StringFormat='ExhaustFluidLevel:    {0}'}" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="{Binding Vehicle.DieselSystemStatus.FilterRegenerationStatus, StringFormat='FilterRegenerationStatus:    {0}'}" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="{Binding Vehicle.DieselSystemStatus.FilterSoot, StringFormat='FilterSoot:    {0}'}" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="{Binding Vehicle.DieselSystemStatus.MetricType.Value, StringFormat='MetricType:    {0}'}" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+            <Label Text="{Binding Vehicle.DieselSystemStatus.UreaRange, StringFormat='UreaRange:    {0}'}" IsVisible="{Binding Vehicle.DieselSystemStatus.Visible}" />
+
+            <BoxView HeightRequest="1" Color="#414141" />
+            <Label Text="{Binding Vehicle.Battery.Status.Value, StringFormat='Battery:               {0}V'}" IsVisible="{Binding Vehicle.Battery.Status.Visible}" />
+            <Label Text="{Binding Vehicle.Battery.Health.Value, StringFormat='Battery Health:   {0}'}" IsVisible="{Binding Vehicle.Battery.Health.Visible}" />
+            <Label Text="{Binding Vehicle.IgnitionStatus.Value, StringFormat='Ignition Status:  {0}'}" IsVisible="{Binding Vehicle.IgnitionStatus.Visible}" />
+            <Label Text="{Binding Vehicle.Odometer.Value, StringFormat='Odometer:           {0} miles'}" IsVisible="{Binding Vehicle.Odometer.Visible}" />
+            <Label Text="{Binding Vehicle.Oil.OilLifePercentage, StringFormat='Oil Life:                {0}%'}" IsVisible="{Binding Vehicle.Oil.Visible}" />
+            <Label Text="{Binding Vehicle.Fuel.FuelLevel, StringFormat='Fuel Level:           {0}%'}" IsVisible="{Binding Vehicle.Fuel.Visible}" />
+            <Label Text="{Binding Vehicle.Fuel.DistanceToEmpty, StringFormat='Fuel Distance To Empty:    {0} miles'}" IsVisible="{Binding Vehicle.Fuel.Visible}" />
+
+            <BoxView HeightRequest="1" Color="#414141" />
+            <Label Text="{Binding Vehicle.LastRefresh, StringFormat='LastRefresh:           {0}'}" IsVisible="{Binding Vehicle.LastRefresh_Visible}" />
+            <Label Text="{Binding Vehicle.LastModifiedDate, StringFormat='LastModifiedDate:           {0}'}" IsVisible="{Binding Vehicle.LastModifiedDate_Visible}" />
+            <Label Text="{Binding Vehicle.ServerTime, StringFormat='ServerTime:         {0}'}" IsVisible="{Binding Vehicle.ServerTime_Visible}" />
+
+            <Label Text="{Binding LogMessage}" x:Name="LabelLog" TextColor="#000000" FontAttributes="Bold" />
+            <Editor Text="{Binding ErrorCode, StringFormat='{0}'}" IsVisible="{Binding DebugMode}" IsReadOnly="True" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" FontSize="Micro" TextColor="#000000" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
